@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.org/RemoteDebug/remotedebug-ios-webkit-adapter.svg?branch=master)](https://travis-ci.org/RemoteDebug/remotedebug-ios-webkit-adapter) <a href="https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter/releases"><img src="https://img.shields.io/github/release/RemoteDebug/remotedebug-ios-webkit-adapter.svg" alt="Release"></a>
 
+**This is a slightly modified version forked from https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter for be used with iOS 12.2+.**
+
 RemoteDebug iOS WebKit Adapter is an protocol adapter that Safari and WebViews on iOS to be debugged from tools like VS Code, Chrome DevTools, Mozilla Debugger.html and other tools compatible with the Chrome Debugging Protocol.
 
 ![](.readme/overview.png)
@@ -22,6 +24,13 @@ Follow the instructions to install [ios-webkit-debug-proxy](https://github.com/g
 
 Install [ios-webkit-debug-proxy](https://github.com/google/ios-webkit-debug-proxy#installation)  and [libimobiledevice](https://github.com/libimobiledevice/libimobiledevice). On Windows you can use [scoop](http://scoop.sh/):
 
+If you don't have [scoop](http://scoop.sh/) just open a PowerShell and execute:
+
+```
+iex (new-object net.webclient).downloadstring('https://get.scoop.sh')
+```
+
+and then install with it the dependecies:
 ```
 scoop bucket add extras
 scoop install ios-webkit-debug-proxy
@@ -43,9 +52,11 @@ brew install --HEAD ios-webkit-debug-proxy
 ```
 
 ### 2) Install latest version of the adapter
+This is a forked and modified version of the original [RemoteDebug iOS WebKit Adapter](https://github.com/RemoteDebug/remotedebug-ios-webkit-adapter) with some improvements for running correctly on iOS 12.2+.
+The best way to use it is cloning this repo or download the zipped version from github, and then execute in the containing folder:
 
 ```
-npm install remotedebug-ios-webkit-adapter -g
+npm install
 ```
 
 ### 3) Enable remote debugging in Safari
@@ -61,8 +72,15 @@ On Windows starting iTunes could prompt the "Trust this computer" dialog.
 
 ### 5) Run the adapter from your favorite command line
 
+Jut run this command and the project will be automatically built and run on the default port (9000)
+
 ```
-remotedebug_ios_webkit_adapter --port=9000
+npm start
+```
+
+if you want to specify a custom port use:
+```
+node out/index.js --port=9222
 ```
 
 BTW: `ios-webkit-debug-proxy` will be run automatically for you, no need to start it separately.
